@@ -18,7 +18,7 @@ int main(){
 	
 	printf("Elija una opcion para continuar.\n");
 	printf("   1-Registrarse.\n");
-    printf("   2-Iniciar sesion.\n");
+        printf("   2-Iniciar sesion.\n");
 	printf("   3-Como se juega.\n");
 	printf("   4-Salir.\n");
 	scanf("%d", &login);
