@@ -11,7 +11,7 @@ int main(){
 	int opcion=0;
 	int temas=0;
 	int login=0;
-	int nombre;
+	int nombre[100], primerapellido[100], segundoapellido[100], usuario[100], matricula;
 	
 	
 	printf("Bienvenido al juego de memoriza, donde usted podra poner a prueba su capacidad para retener informacion.\n");
@@ -19,8 +19,8 @@ int main(){
 
 	printf("Elija una opcion para continuar.\n");
 	printf("   1-Registrarse.\n");
-    printf("   2-Iniciar sesion.\n");
-    printf("   3-Como se juega.\n");
+        printf("   2-Iniciar sesion.\n");
+        printf("   3-Como se juega.\n");
 	printf("   4-Salir.\n");
 	scanf("%d", &login);
 	
@@ -29,30 +29,45 @@ int main(){
 	switch(login){
 		
 		case 1:
-			printf("Indique su nombre:\n");
-			scanf("%s", &nombre);
+			printf ("Registrarse. \n");
+			printf ("nombre del jugador \n");
+			scanf ("%s", &nombre[100]);
 			
+			printf("Primer apellido:\n");
+		        scanf("%s", &primerapellido);
 			
+			printf("Segundo apellido:\n");
+                        scanf("%s", &segundoapellido);
+		
+			printf("Numero de matricula (que sera su contraseña): \n");
+		        scanf("%d", &matricula);
+		    
+		        printf( "Nombre de usuario:\n");
+		        scanf("%s", &usuario);
+		    
 			break;
 			
 		case 2:
-			printf("Bienvenido al juego que pondra a prueba tu memoria\n");
+			printf ("Iniciar sesion. \n");
+			printf("Introduce el nombre de usuario:\n");
+			scanf("%s", &usuario);
+			    
+			printf("Introduce la contrasenya:\n");
+			scanf("%s", &matricula);
 			
 			break;
 			
 		case 3:
 			printf("En este juego, los jugadores deberan escoger el tema a tratar, y posteriormente apareceran palabras de\n ");
 			printf("forma continua con el fin de que deba ir escribiendo dichas palabras en el orden indicado hasta que \n ");
-			printf("lo introduzca de forma erronea\n");
+			printf("lo introduzca de forma erronea momento en el que usted se ira al pozo.\n");
 			
 			break;
 			
 		case 4:
 			printf("Con esta opcion regresara al comienzo del programa\n");
 			
-			
-			
-			break;
+		    break;
 	}
 	
 	
@@ -116,4 +131,3 @@ int main(){
 	    
     
 }
-
