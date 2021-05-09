@@ -1,5 +1,8 @@
 # include<stdio.h>
 # include<string.h>
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>
+
 int main(){
 	
 	printf("    -------------------------------    \n");
@@ -37,13 +40,13 @@ int main(){
 		        scanf("%s", &primerapellido);
 			
 			printf("Segundo apellido:\n");
-                        scanf("%s", &segundoapellido);
+            scanf("%s", &segundoapellido);
 		
 			printf("Numero de matricula (que sera su contraseña): \n");
 		        scanf("%d", &matricula);
 		    
 		        printf( "Nombre de usuario:\n");
-		        scanf("%s", &usuario);
+		    	scanf("%s", &usuario);
 		    
 			break;
 			
@@ -67,67 +70,191 @@ int main(){
 		case 4:
 			printf("Con esta opcion regresara al comienzo del programa\n");
 			
-		    break;
+		    	break;
 	}
 	
 	
-	printf("A continuacion elegira el modo que desea jugar.\n");
+	printf("A continuacion elegira la dificutad a la que deseará jugar.\n");
 	printf("\n");
 	
-	printf("Opcion 1- Todos los temas.\n");
-	printf("Opcion 2- Numeros.\n");
-	printf("Opcion 3- Tema concreto.\n");
+	printf("Opcion 1- Facil.\n");
+	printf("Opcion 2- Medio.\n");
+	printf("Opcion 3- Dificil.\n");
 	scanf("%d", &opcion);
 	
 	switch(opcion){
 	
 	    case 1:
-	    	printf("Encontrara palabras pertenecientes a temas diversos\n");
+	    	printf("Has seleccionado la opcion facil, al parecer porque eres un maquina que no quiere fliparse delante de sus amigos.\n");
 	    	
-	    	break;
+	    	
+            int n0, n1, n2, n3, n4, n5, n6, n7, n8, n9, n10, n11;
+
+            srand (time(NULL));
+
+            n0 = rand() % 10 + 1;
+  
+            printf("el primer valor es %d\n", n0);
+  
+            printf("Digame el valor del primer numero:\n");
+            scanf("%d", &n1);
+  
+            if(n1==n0){
+    	        printf("Correcto, continuemos;\n");
+    	        printf("\n");
+            }else{
+    	        printf("Fallaste, intentelo de nuevo");
+    	    return 0;
+            }
+    
+			srand (time(NULL));
+    
+    		n2 = rand() % 10 + 1;
+    
+    		printf("el segundo valor es %d\n", n2);
+    
+    		printf("Digame el valor del primer numero:\n");
+    		scanf("%d", &n1);
+    
+    		printf("Digame el valor del segundo numero:\n");
+    		scanf("%d", &n3);
+    
+    		if((n1==n0)&&(n2==n3)){
+    			printf("Correcto, continuemos;\n");
+    			printf("\n");
+    		}else{
+    			printf("Fallaste, intentelo de nuevo");
+    			return 0;
+    		}
+    
+    		srand (time(NULL));
+     
+			n4 = rand() % 10 + 1;
+    
+    		printf("el tercer valor es %d\n", n4);
+    
+    		printf("Digame el valor del primer numero:\n");
+    		scanf("%d", &n1);
+    		
+    		printf("Digame el valor del segundo numero:\n");
+    		scanf("%d", &n3);
+    
+    		printf("Digame el valor del segundo numero:\n");
+    		scanf("%d", &n5);
+    
+    		if((n1==n0)&&(n2==n3)&&(n4==n5)){
+    			printf("Correcto, continuemos;\n");
+    			printf("\n");
+   		 	}else{
+    			printf("Fallaste, intentelo de nuevo");
+    			return 0;
+    		}
+  
+    		srand (time(NULL));
+     
+			n6 = rand() % 10 + 1;
+    
+    		printf("el tercer valor es %d\n", n6);
+    
+    		printf("Digame el valor del primer numero:\n");
+    		scanf("%d", &n1);
+    	
+    		printf("Digame el valor del segundo numero:\n");
+    		scanf("%d", &n3);
+    
+    		printf("Digame el valor del segundo numero:\n");
+    		scanf("%d", &n5);
+    
+    		printf("Digame el valor del segundo numero:\n");
+    		scanf("%d", &n7);
+    
+    		if((n1==n0)&&(n2==n3)&&(n4==n5)&&(n6==n7)){
+    			printf("Correcto, continuemos;\n");
+    			printf("\n");
+    		}else{
+    			printf("Fallaste, intentelo de nuevo");
+    			return 0;
+    		}
+     
+    		srand (time(NULL));
+     
+			n8 = rand() % 10 + 1;
+    
+    		printf("el tercer valor es %d\n", n8);
+    
+    		printf("Digame el valor del primer numero:\n");
+    		scanf("%d", &n1);
+    
+    		printf("Digame el valor del segundo numero:\n");
+    		scanf("%d", &n3);
+    
+    		printf("Digame el valor del segundo numero:\n");
+    		scanf("%d", &n5);
+    
+    		printf("Digame el valor del segundo numero:\n");
+    		scanf("%d", &n7);
+    
+    		printf("Digame el valor del segundo numero:\n");
+    		scanf("%d", &n9);
+    
+    		if((n1==n0)&&(n2==n3)&&(n4==n5)&&(n6==n7)&&(n8==n9)){
+    			printf("Correcto, continuemos;\n");
+    			printf("\n");
+ 		   	}else{
+    			printf("Fallaste, intentelo de nuevo");
+    			return 0;
+    		}
+    
+    		srand (time(NULL));
+     
+			n10 = rand() % 10 + 1;
+    
+    		printf("el tercer valor es %d\n", n10);
+    
+    		printf("Digame el valor del primer numero:\n");
+    		scanf("%d", &n1);
+    
+    		printf("Digame el valor del segundo numero:\n");
+    		scanf("%d", &n3);
+    
+    		printf("Digame el valor del segundo numero:\n");
+    		scanf("%d", &n5);
+    
+    		printf("Digame el valor del segundo numero:\n");
+   			scanf("%d", &n7);
+    	
+    		printf("Digame el valor del segundo numero:\n");
+    		scanf("%d", &n9);
+    
+    		printf("Digame el valor del segundo numero:\n");
+    		scanf("%d", &n11);
+    
+    		if((n1==n0)&&(n2==n3)&&(n4==n5)&&(n6==n7)&&(n8==n9)&&(n10==n11)){
+    			printf("Correcto, continuemos;\n");
+    			printf("\n");
+    		}else{
+    			printf("Fallaste, intentelo de nuevo");
+    			return 0;
+    		}
+     
+  		return 0;
+	}
+	    	
 	    
-	    case 2:
-	    	printf("A continuacion solo apareceran numeros de forma consecutiva\n");
+	    
+	    /*case 2:
+	    	printf("Has seleccionado la opcion intermedia, donde a pesar de que sabemos que das para mas, vas ha relajarte un poco con algo mas facil.\n");
+	    	
 	    	
 	    	break;
 	    	
 	    case 3:
-	    	
-	        printf("Eliga un tema entre los siguientes.\n");
-	    	printf("Tema 1- Animales.\n");
-	        printf("Tema 2- Comidas.\n");
-	        printf("Tema 3- Enfermedades.\n");
-	        printf("Tema 4- Paises.\n");
-	        scanf("%d", &temas);
-	        
-	        switch(temas){
-	        	
-	        	case 1:
-	        		
-	        		
-	        		
-	        		break;
-	        	
-	        	case 2:
-	        		
-	        		
-	        		break;
-	        		
-	        	case 3:
-	        		
-	        		
-	        		break;
-	        		
-	        	case 4:
-	        		
-	        		
-	        		break;
-	        		
-			}
-	        
-	        break;
+	    	printf("Has seleccionado la opcion dificil, digna de grandes cabezas como la de einstein o rajoy.\n");
 	    
-    }
+	    
+	        break;
+    }*/
 	    
     
 }
+
