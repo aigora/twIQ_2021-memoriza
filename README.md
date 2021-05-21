@@ -1,5 +1,5 @@
 # [MEMORIZA]
-Con este programa podrás fortalecer tu capacidad de retener información mediante una
+Con este programa podrás fortalecer tu capacidad de retener información mediante
 la memorización de distintos números que serán proporcionados por el programa.
 Se podrá elegir entre tres dificultades, variando las cifras y la cantidad de números a memorizar.
 Pudiendo así competir entre tus amigos para ver quién es el mejor memorizando.
