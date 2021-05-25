@@ -2,6 +2,14 @@
 # include<string.h>
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>
+#include<windows.h>
+
+struct jugador {
+	char nombre[50];
+	char apellido[50];
+	char apellido2[50];
+	char matricula[10]; 
+};
 
 int main(){
 	
@@ -11,103 +19,134 @@ int main(){
 	printf("    -------------------------------    \n");
 	printf("    -------------------------------    \n");
 	
-	int opcion=0;
 	int temas=0;
 	int login=0;
-	int nombre[100], primerapellido[100], segundoapellido[100], usuario[100], matricula;
-	
-	
-	printf("Bienvenido al juego de memoriza, donde usted podra poner a prueba su capacidad para retener informacion.\n");
-	printf("\n");
+	int dificultad=0;
 
-	printf("Elija una opcion para continuar.\n");
-	printf("   1-Registrarse.\n");
-        printf("   2-Iniciar sesion.\n");
-    	printf("   3-Como se juega.\n");
-	printf("   4-Salir.\n");
-	scanf("%d", &login);
-	
 
-	
-	switch(login){
-		
-		case 1:
-			printf ("Registrarse. \n");
-			printf ("nombre del jugador \n");
-			scanf ("%s", &nombre[100]);
-			
-			printf("Primer apellido:\n");
-		    	scanf("%s", &primerapellido);
-			
-			printf("Segundo apellido:\n");
-            		scanf("%s", &segundoapellido);
-		
-			printf("Numero de matricula (que sera su contraseña): \n");
-		    	scanf("%d", &matricula);
-		    
-		   	printf( "Nombre de usuario:\n");
-		    	scanf("%s", &usuario);
-		    
-			break;
-			
-		case 2:
-			printf ("Iniciar sesion. \n");
-			printf("Introduce el nombre de usuario:\n");
-			scanf("%s", &usuario);
-			    
-			printf("Introduce la contrasenya:\n");
-			scanf("%s", &matricula);
-			
-			break;
-			
-		case 3:
-			printf("En este juego, los jugadores deberan escoger el tema a tratar, y posteriormente apareceran palabras de\n ");
-			printf("forma continua con el fin de que deba ir escribiendo dichas palabras en el orden indicado hasta que \n ");
-			printf("lo introduzca de forma erronea momento en el que usted se ira al pozo.\n");
-			
-			break;
-			
-		case 4:
-			printf("Con esta opcion regresara al comienzo del programa\n");
-			
-		   	break;
+    struct jugador jugador[200];
+    FILE*pfichero;
+    int i=0,contador=1, njugador;
+    char opcion;
+    char buscamatricula[10];
+    int jugador1;
+
+   pfichero = fopen("UsuariosMemori.txt","r");
+   
+   if(pfichero==NULL){
+         printf("Ha sucedido un error, por favor vuelva a abrir el programa\n");
+         return 0;
+         
+    }while(fscanf(pfichero, "%s %s %s %d", jugador[contador].nombre, jugador[contador].apellido, jugador[contador].apellido2, &jugador[contador].matricula) != EOF){
+      	
+      	contador++;
+      	njugador++;
 	}
 	
+    fclose(pfichero);
+	 
+    printf("Bienvenido a este maravilloso juego.\n\n");
+    
+    do {
+    	fflush(stdin);
+    	printf("Si quiere iniciar sesion pulse A\n");
+    	printf("Si quiere registrarse pulse B\n");
+    	printf("Si quiere saber como se juega pulse C.\n");
+    	printf("Si quiere salir del juego pulse D\n");
+    	scanf("%c", &opcion);
+    	
+    	if( opcion == 'A'|| opcion == 'a') {
+    		printf("Bienvenido de nuevo, identifiquese para iniciar sesion Jugador\n");
+    		printf("Introduzca su numero de matricula\n");
+    		fflush(stdin);
+    		scanf("%d", &buscamatricula);
+    	
+    		for(i=1; i<=njugador; i++){
+    			if(strcmp(jugador[i].matricula, buscamatricula) == 0){
+    				printf("Bienvenido %s %s %s.\nDisfrute\n", jugador[i].nombre, jugador[i].apellido, jugador[i].apellido2);
+    				i=jugador1;
+    				break;
+				}
+			}
+		}
+		
+		else if( opcion == 'B' || opcion == 'b'){
+			pfichero=fopen("UsuariosMemori.txt", "a");
+			printf("Bienvenido al juego memoriza, para poder jugar registrate\n\n");
+			printf("Introduzca su nombre\n");
+			fflush(stdin);
+			scanf("%s", &jugador[njugador+1].nombre);
+			fprintf(pfichero, "\n%s ", jugador[njugador+1].nombre);
+			printf("Introduzca su primer apellido\n");
+			fflush(stdin);
+			scanf("%s", &jugador[njugador+1].apellido);
+			fprintf(pfichero, "%s ", jugador[njugador+1].apellido);
+			printf("Introduzca su segundo apellido\n");
+			fflush(stdin);
+			scanf("%s", &jugador[njugador+1].apellido2);
+			fprintf(pfichero, "%s ", jugador[njugador+1].apellido2);
+			printf("Introduzca su numero de matricula\n");
+			fflush(stdin);
+			scanf("%s", &jugador[njugador+1].matricula);
+			fprintf(pfichero, "%s", jugador[njugador+1].matricula);
+			njugador=njugador+1;
+			jugador1=njugador;
+			printf("¿Preparado para jugar? Buena suerte %s %s %s\n",jugador[jugador1].nombre, jugador[jugador1].apellido, jugador[jugador1].apellido2);
+		
+			
+		}else if ( opcion == 'C' || opcion == 'c'){
+			printf("En este juego, los jugadores deberan escoger una dificultad, y posteriormente apareceran numeros de\n ");
+			printf("forma continua con el fin de que deba ir escribiendo dichos numeros en el orden indicado hasta que \n ");
+			printf("lo introduzca de forma erronea momento en el que usted se ira al pozo, o por el contrario logre \n");
+			printf("introducir correctamente los 10 numeros, entonces ganara.\n\n");
+			
+			break;
+			
+		}else if ( opcion == 'D' || opcion == 'd'){
+			printf("¡Nos vemos pronto!\n");
+			return 0;
+		}	
+		
+    }while( opcion != 'A' && opcion != 'a' && opcion != 'B' && opcion != 'b' && opcion != 'C' && opcion != 'c' && opcion != 'D' && opcion != 'd');
+
 	
-	printf("A continuacion elegira la dificutad a la que deseará jugar.\n");
+	
+	printf("A continuacion elegira la dificutad a la que deseara jugar.\n");
 	printf("\n");
 	
 	printf("Opcion 1- Facil.\n");
 	printf("Opcion 2- Medio.\n");
 	printf("Opcion 3- Dificil.\n");
-	scanf("%d", &opcion);
+	scanf("%d", &dificultad);
 	
-	switch(opcion){
+	switch(dificultad){
 	
 	    case 1:
-	    	printf("Has seleccionado la opcion facil, al parecer porque eres un maquina que no quiere fliparse delante de sus amigos.\n");
+	    	printf("Has seleccionado la opcion facil, tratara de memorizar numeros de 1 cifra.\n");
 	    	
 	    	
-            	int n0, n1, n2, n3, n4, n5, n6, n7, n8, n9, n10, n11, n12, n13, n14, n15, n16, n17, n18, n19;
+            int n0, n1, n2, n3, n4, n5, n6, n7, n8, n9, n10, n11, n12, n13, n14, n15, n16, n17, n18, n19;
 
-            	srand (time(NULL));
+            srand (time(NULL));
 
-            	n0 = rand() % 10 + 1;
+            n0 = rand() % 10 + 1;
   
-            	printf("el primer valor es %d\n", n0);
+            printf("el primer valor es %d\n", n0);
   
-            	printf("Digame el valor del primer numero:\n");
-            	scanf("%d", &n1);
+            printf("Digame el valor del primer numero:\n");
+            scanf("%d", &n1);
   
-            	if(n1==n0){
-    	        	printf("Correcto, continuemos;\n");
-    	        	printf("\n");
-            	}else{
-    	        	printf("Fallaste, intentelo de nuevo");
-    	    	return 0;
-            	}
+            if(n1==n0){
+    	        printf("Correcto, continuemos;\n");
+    	        printf("\n");
+            }else{
+    	        printf("Fallaste.\n");
+    	        return 0;
+            }
+            
+            system("cls");
     
-		srand (time(NULL));
+			srand (time(NULL));
     
     		n2 = rand() % 10 + 1;
     
@@ -126,6 +165,8 @@ int main(){
     			printf("Fallaste, intentelo de nuevo");
     			return 0;
     		}
+    		
+    		system("cls");
     
     		srand (time(NULL));
      
@@ -149,10 +190,12 @@ int main(){
     			printf("Fallaste, intentelo de nuevo");
     			return 0;
     		}
+    		
+    		system("cls");
   
     		srand (time(NULL));
      
-		n6 = rand() % 10 + 1;
+			n6 = rand() % 10 + 1;
     
     		printf("el cuarto valor es %d\n", n6);
     
@@ -175,6 +218,8 @@ int main(){
     			printf("Fallaste, intentelo de nuevo");
     			return 0;
     		}
+    		
+    		system("cls");
      
     		srand (time(NULL));
      
@@ -204,6 +249,8 @@ int main(){
     			printf("Fallaste, intentelo de nuevo");
     			return 0;
     		}
+    		
+    		system("cls");
     
     		srand (time(NULL));
      
@@ -236,6 +283,8 @@ int main(){
     			printf("Fallaste, intentelo de nuevo");
     			return 0;
     		}
+    		
+    		system("cls");
     		
     		srand (time(NULL));
      
@@ -272,6 +321,8 @@ int main(){
     			return 0;
     		}
     		
+    		system("cls");
+    		
     		srand (time(NULL));
      
 			n14 = rand() % 10 + 1;
@@ -307,8 +358,10 @@ int main(){
     			printf("\n");
     		}else{
     			printf("Fallaste, intentelo de nuevo");
-    			return 0;
+    			
     		}
+    		
+    		system("cls");
     		
     		srand (time(NULL));
      
@@ -351,6 +404,8 @@ int main(){
     			return 0;
     		}
     		
+    		system("cls");
+    		
     		srand (time(NULL));
      
 			n18 = rand() % 10 + 1;
@@ -391,16 +446,16 @@ int main(){
     			printf("No esta mal, intente el nivel medio a ver si eres capaz.\n");
     			printf("\n");
     		}else{
-    			printf("Fallaste, intentelo de nuevo");
-				return 0;
+    			printf("Fallaste, intentelo de nuevo");	
     		}
+    		
         
   		return 0;
 	    	
 	    
 	    
 	    case 2:
-	    	printf("Has seleccionado la opcion intermedia, donde a pesar de que sabemos que das para mas, vas a relajarte un poco con algo mas facil.\n");
+	    	printf("Has seleccionado la opcion intermedia, tratara de memorizar numeros de 2 cifras.\n");
 	    	 
 	    	int n20, n21, n22, n23, n24, n25, n26, n27, n28, n29, n30, n31, n32, n33, n34, n35, n36, n37, n38, n39;
 
@@ -417,9 +472,11 @@ int main(){
     	        printf("Correcto, continuemos;\n");
     	        printf("\n");
             }else{
-    	        printf("Fallaste, intentelo de nuevo");
+    	        printf("Fallaste");
     	    return 0;
             }
+            
+            system("cls");
     
 			srand (time(NULL));
     
@@ -440,6 +497,8 @@ int main(){
     			printf("Fallaste, intentelo de nuevo");
     			return 0;
     		}
+    		
+    		system("cls");
     
     		srand (time(NULL));
      
@@ -463,6 +522,8 @@ int main(){
     			printf("Fallaste, intentelo de nuevo");
     			return 0;
     		}
+    		
+    		system("cls");
   
     		srand (time(NULL));
      
@@ -489,6 +550,8 @@ int main(){
     			printf("Fallaste, intentelo de nuevo");
     			return 0;
     		}
+    		
+    		system("cls");
      
     		srand (time(NULL));
      
@@ -518,6 +581,8 @@ int main(){
     			printf("Fallaste, intentelo de nuevo");
     			return 0;
     		}
+    		
+    		system("cls");
     
     		srand (time(NULL));
      
@@ -550,6 +615,8 @@ int main(){
     			printf("Fallaste, intentelo de nuevo");
     			return 0;
     		}
+    		
+    		system("cls");
     		
     		srand (time(NULL));
      
@@ -585,6 +652,8 @@ int main(){
     			printf("Fallaste, intentelo de nuevo");
     			return 0;
     		}
+    		
+    		system("cls");
     		
     		srand (time(NULL));
      
@@ -623,6 +692,8 @@ int main(){
     			printf("Fallaste, intentelo de nuevo");
     			return 0;
     		}
+    		
+    		system("cls");
     		
     		srand (time(NULL));
      
@@ -664,6 +735,8 @@ int main(){
     			printf("Fallaste, intentelo de nuevo");
     			return 0;
     		}
+    		
+    		system("cls");
     		
     		srand (time(NULL));
      
@@ -709,6 +782,8 @@ int main(){
     			fflush(stdin);
 				return 0;
     		}
+    		
+    		system("cls");
         
 
   		return 0;
@@ -717,7 +792,7 @@ int main(){
 	    	break;
 	    	
 	    case 3:
-	    	printf("Has seleccionado la opcion dificil, digna de grandes cabezas como la de einstein o rajoy.\n");
+	    	printf("Has seleccionado la opcion dificil, tratara de memorizar numero de 3 cifras.\n");
 	        
 	        int n40, n41, n42, n43, n44, n45, n46, n47, n48, n49, n50, n51, n52, n53, n54, n55, n56, n57, n58, n59;
 
@@ -737,6 +812,8 @@ int main(){
     	        printf("Fallaste, intentelo de nuevo");
     	    return 0;
             }
+            
+            system("cls");
     
 			srand (time(NULL));
     
@@ -757,6 +834,8 @@ int main(){
     			printf("Fallaste, intentelo de nuevo");
     			return 0;
     		}
+    		
+    		system("cls");
     
     		srand (time(NULL));
      
@@ -780,6 +859,8 @@ int main(){
     			printf("Fallaste, intentelo de nuevo");
     			return 0;
     		}
+    		
+    		system("cls");
   
     		srand (time(NULL));
      
@@ -806,6 +887,8 @@ int main(){
     			printf("Fallaste, intentelo de nuevo");
     			return 0;
     		}
+    		
+    		system("cls");
      
     		srand (time(NULL));
      
@@ -835,6 +918,8 @@ int main(){
     			printf("Fallaste, intentelo de nuevo");
     			return 0;
     		}
+    		
+    		system("cls");
     
     		srand (time(NULL));
      
@@ -867,6 +952,8 @@ int main(){
     			printf("Fallaste, intentelo de nuevo");
     			return 0;
     		}
+    		
+    		system("cls");
     		
     		srand (time(NULL));
      
@@ -902,6 +989,8 @@ int main(){
     			printf("Fallaste, intentelo de nuevo");
     			return 0;
     		}
+    		
+    		system("cls");
     		
     		srand (time(NULL));
      
@@ -940,6 +1029,8 @@ int main(){
     			printf("Fallaste, intentelo de nuevo");
     			return 0;
     		}
+    		
+    		system("cls");
     		
     		srand (time(NULL));
      
@@ -981,6 +1072,8 @@ int main(){
     			printf("Fallaste, intentelo de nuevo");
     			return 0;
     		}
+    		
+    		system("cls");
     		
     		srand (time(NULL));
      
@@ -1025,6 +1118,8 @@ int main(){
     			printf("Fallaste, intentelo de nuevo");
     			return 0;
     		}
+    		
+    		system("cls");
         
 
   		return 0;
@@ -1034,3 +1129,4 @@ int main(){
 	    
     
 }
+
